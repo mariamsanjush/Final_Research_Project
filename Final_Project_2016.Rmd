@@ -1,0 +1,273 @@
+---
+title: "The Role of Transparency in the Fight against Political Corruption in Europe"
+author: "Mariam Sanjush and Roberto Martinez B. Kukutschka"
+date: |
+  | May 23, 2016
+  | Hertie School of Governance
+output: 
+  pdf_document:
+    number_sections: true
+bibliography: reference.bib
+---
+
+
+```{r stup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+``` {r initialisation, echo = F, message = F, warning = F}
+
+rm(list = ls())
+
+## Load packages for analysis
+
+
+load <- c("httr", "plyr", "xlsx", "rio", "Zelig", "repmis", 
+          "plm", "tidyr", "countrycode", "Hmisc", 
+          "WDI", "xlsxjars", "zoo", "rworldmap", "googleVis",
+          "repmis", "magrittr", "scales", "betareg", "dplyr", "xtable", "texreg", 
+          "stargazer", "readxl", "ggplot2", "grid", 
+          "captioner", "foreign", "rms", "Zelig", 
+          "knitr", "GGally", "gridExtra", 
+          "zoo", "rugarch", "psych")
+
+loaded <- lapply(load, function(x) {
+  if(!require(x, character.only = T)) {
+    install.packages(x)
+    require(x, character.only = T)
+  }
+})
+
+
+## Create bibTeX file for the used packages
+LoadandCite(load, file = 'reference.bib')
+
+
+rm(load, loaded)
+
+figcap <- captioner(prefix = "Figure", 
+                    auto_space = TRUE, levels = 1, type = NULL)
+tablecap <- captioner(prefix = "Table", 
+                      auto_space = TRUE, levels = 1, type = NULL)
+
+
+
+# Create list of commonly used working directories (update, if needed)
+directory <- c('C:/Users/User/Desktop/cooperation')
+
+set_valid_wd(directory) # Set to first valid directory in the possible_dir vector
+rm(directory) # remove possible_dir vector
+
+```
+
+```{r finedata, echo=F, warning=F, message=F, error=F}
+load("finaldata.Rda") # Load data file
+```
+
+
+# Introduction
+Corruption has not always been perceived as something negative. Until today the debate of whether corruption greases or sands the wheels of economic growth still lingers [@bardhan1997; @pande2008; @aidt2009]. Those in favour of the greasing hypothesis argue that corruption facilitates trade that may not have happened otherwise and promotes efficiency by allowing private sector agents to overcome cumbersome regulations [@leff1964; @huntington1968; @meon2010]. Opponents of this view, meanwhile, have built a solid theoretical rebuttal by arguing that the greasing effect of corruption is only possible as a second best option in a bad institutional setting.  
+
+Since the mid-1990s, when Transparency International (TI) and the World Bank (WB) popularized their measurements of corruption, the damaging effects of this phenomenon have been widely documented in the academic literature. Mauro [@mauro1995] argues that corruption reduces investment across developing countries, thereby negatively affecting growth. Reinikka and Svensson [@reinikka2005] find that corruption has detrimental effects on human capital accumulation. There are also studies showing that corruption directly affects the structure of public budgets by directing more resources to sectors with a higher degree of discretionality, often at the expense of the provision of public goods such as healthcare and education [@tanzi1998].  
+
+Corruption is often thought as a problem of the developing world and there are indeed a plethora of academic studies documenting the links between corruption and different measurements of development Corruption continues to be a challenge for Europe - a phenomenon that costs the European economy around 120 billion euros per year [@eu2014]. Moreover, the Eurobarometer survey results show that three quarters (76%) of Europeans think that corruption is widespread and more than half (56%) think that the level of corruption in their country has increased over the past three years. These numbers contrast sharply with the number of Europeans reporting to having been asked to pay a bribe in the past 12 months (6%).  
+
+What explains this gap, between lack of experience of corruption and high perceptions of it in the EU28? Before answering this question it is important to draw the difference between different types of corruption, i.e. petty or bureaucratic corruption and grand or political corruption. The former is mostly understood as the abuse of entrusted power by public officials in their interactions with ordinary citizens, who often are trying to access basic goods or services in places like hospitals, schools, police departments and other agencies. This type of corruption is often considered to be the most visible one, as citizens have to experience it directly. The latter, often more damaging type of corruption, refers to the abuse of high-level power that benefits the few at the expense of the many, and causes serious and widespread harm to individuals and society through the manipulation of policies, institutions and rules of procedure in the allocation of resources and financing by political decision makers, who abuse their position to sustain their power, status and wealth.  
+
+Evidence from recent surveys shows that the explanation might reside in the widespread belief that grand or political corruption is widespread in the continent and that the political and economic elites are profiting from undue advantages (Mungiu-Pippidi 2014). Evidence from the 2013 Quality of Government survey conducted by the University of Gothenburg and the European Commission???s Special Eurobarometer 79 shows that citizens all over Europe, including the advanced democracies of Western and Northern Europe, have come to believe that success in the public sector is determined by networks rather than by hard work and that these political connections are essential to succeed in the business world as well.  
+
+Most studies dealing with political corruption focus on authoritarian regimes because under such regimes corruption is simply the form of government and the mechanism through which the ruler manages the economy. However, as demonstrated by a large number of corruption scandals in liberal democracies over the years, political corruption is not restricted to authoritarian systems. Political corruption has even been cited as an important driver of the global and the European Financial crises.  
+
+Due to its corroding effects on state institutions, high social and economic costs, it is important to identify policies that can help prevent and fight against grand corruption. While bureaucratic corruption can normally be controlled through auditing, legislation, and institutional arrangements, the degenerative effects of political corruption cannot be counteracted by an administrative approach alone. Political corruption, however, calls for a different approach, i.e. one that empowers external watchdogs to keep an eye on politicians and their decisions. Policies that foster transparency can help promote this as they reduce the problem of information asymmetry by shedding light on the extent to which the government is pursuing the goals that are in the interest of its citizens. In other words, transparency not only enables citizens to evaluate to what extent their interests are being served by the government, it also encourages accountability and helps prevent abuses and misdeeds by officials .  
+
+##Strategies against grand corruption
+As the first global legally-binding international anti-corruption instrument, the United Nations Convention against Corruption (UNCAC) includes the following strategies as potential weapons to fight against grand corruption:  
+
+* Conflict of Interest regulation: According to UNCAC, it is crucial for states to take measures to prevent conflicts of interests and to guarantee the integrity and impartiality of the public officials involved in decision-making processes, as they should not be able to take advantage of their position for their own private gain. In the context of public procurement, for example, conflicts of interest arise if a public procurement official has an economic interest in one of the bidding companies or is offered a future employment in one of them [@heggstad2010].  
+* Financial disclosure of assets of relevant government officials is also a good practice to promote integrity in the public sector. Ideally, public officials and politicians should regularly declare their income, assets, liabilities, gifts and benefits, as well as unpaid employments and contracts, participation in organisations and post-tenure positions. This information is particularly important to detect cases of illicit enrichment, embezzlement, etc.  
+
+##Research Question and Hypothesis
+The proposed research aims at giving a comparative overview of the state of grand corruption across the EU28 and measure the impact of different transparency mechanisms on the levels of grand corruption in the region. The research question can thus be summarized as follows: 
+
+**Are the transparency and accountability policies proposed by UNCAC effective in preventing and curbing grand corruption in the EU28?**    
+
+It is necessary to mention, however, that assuming that these policies can, by themselves, eradicate or curb corruption on their own is not realistic given the complexity of the issue. This research will therefore part from the assumption that transparency mechanisms can only be effective when they interact with other factors that guarantee that they can be effectively implemented, such as a strong and independent judiciary. Another important component for these transparency initiatives to work is to have engaged and informed citizens with enough knowledge to be able to demand accountability from their government. The main hypothesis for this paper is therefore that conflict of interest regulation and financial disclosure mechanisms will only affect grand corruption in in the presence of other intervening variables such as an independent judiciary, a free media and an engaged body of citizens. We will use diverse statistical methods to test this hypothesis, including some cross-sectional and time series models to consider the time factor and check whether the UNCAC suggested policies start being effective with some lag after they are enacted. Finally to examine that question, we make the following hypothesis to test: 
+
+> H1: Conflict of interest regulation and financial disclosure mechanisms will only affect grand corruption in in the presence of other intervening variables such as an independent judiciary, a free media and an engaged body of citizens.
+
+#Data, variables and method
+
+## The Data
+
+The World Economic Forum's (WEF) Global Competitiveness Report (GCR) aggregates governance, macroeconomic and the business aspects of competitiveness into a single index in order to assess a county's productivity and prosperity. Some of the data included in the GCR comes directly from an expert survey conducted by the WEF among 13,500 firms inquiring about practices associated to grand corruption, such as deviation of public funds, lack of transparency in government policy-making, etc. This will therefore be source of our dependent variables. The GCR covers a total of 144 countries in all regions of the world for the period 2004-2016.  
+
+The operationalization of our transparency policy variables will be derived from the World Bank's Public Accountability Mechanisms (PAM) database. This data source provides information about relevant legislation, political events, and notable incidents of corruption 35 European countries across. It also summarizes specific indicators related to the accountability mechanisms of income and asset disclosure, freedom of information, conflict of interest, immunity protections, and ethics training. The PAM database will therefore be the basis for the construction of our transparency variables. Its limited geographical coverage, however, will limit our analysis to the EU28 only.  
+
+The QoG Institute offers a range of datasets on indicators of Quality of Government and other related indicators. This database will be used to obtain information on civil society, the judicial system in the countries, etc. Finally, Eurostat data will also be used to retrieve the necessary economic control variables for our models.  
+
+
+## Dependent variable
+
+Control of Corruption (CoC): Given that out research question treats corruption as the dependent variable, we first need an indicator of the extent of corruption in a country. Given its availability and comparability across time, we decided to use the Control of Corruption estimate from the Worldwide Governance Indicators Database. Control of Corruption (CoC) captures perceptions of the extent to which public power is exercised for private gain, including both petty and grand forms of corruption, as well as "capture" of the state by elites and private interests.
+
+
+## Key independent variables
+
+Freedom of information and existence of anti-corruption agencies are the key independent variables to examine the mentioned hypothesis. Its is worth mentioning that both of the variables are dummy. 
+
+\newpage
+## Control variables
+
+TRADE: the sum of exports and imports of goods and services measured as a share of gross domestic product.
+
+EDUCATION: Gross enrollment ratio is the ratio of total enrollment, regardless of age, to the population of the age group that officially corresponds to the level of education shown. Secondary education completes the provision of basic education that began at the primary level, and aims at laying the foundations for lifelong learning and human development, by offering more subject- or skill-oriented instruction using more specialized teachers.
+
+COMPETITIVENESS: The data covering taxes payable by businesses, measure all taxes and contributions that are government mandated (at any level - federal, state, or local), apply to standardized businesses, and have an impact in their income statements. The taxes covered go beyond the definition of a tax for government national accounts (compulsory, unrequited payments to general government) and also measure any imposts that affect business accounts. The main differences are in labor contributions and value added taxes. The data account for government-mandated contributions paid by the employer to a requited private pension fund or workers insurance fund but exclude value added taxes because they do not affect the accounting profits of the business that is, they are not reflected in the income statement.
+
+URBAN POPULATION: refers to people living in urban areas as defined by national statistical offices. It is calculated using World Bank population estimates and urban ratios from the United Nations World Urbanization Prospects.
+
+GDP PER CAPITA: It is gross domestic product converted to international dollars using purchasing power parity rates. An international dollar has the same purchasing power over GDP as the U.S. dollar has in the United States. GDP is the sum of gross value added by all resident producers in the economy plus any product taxes and minus any subsidies not included in the value of the products. It is calculated without making deductions for depreciation of fabricated assets or for depletion and degradation of natural resources. Data are in constant 2011 international dollars.
+
+
+
+ Table 1: It briefly discussing the variables, scale and description
+
+| Names           | Scale      | Description                                             |
+|-----------------|------------|---------------------------------------------------------|
+| COC score       | Continuous | Control of corruption score                             |
+| Trade           | Continuous | Share of trade of the GDP                               |
+| Urban           | Continuous | Proportion of urban Population                          |
+| GDPPC           | Continuous | GDP per capita                                          |
+| Education       | Continuous | Gross enrollment ratio is the ratio of total enrollment |
+| Competitiveness | Continuous | Taxes payable by businesses                             |
+| Year            | Integer    | Year identifier                                         |
+| Country         | Nominal    | Country identifier                                      |
+| Foia            | Dummy      | Freedom of Information                                  |
+| Aca_press       | Dummy      | Existence of Anti-Corruption Agency                     |                                     
+
+Table 1 briefly describes all the variables with their description; most of the variables are continuous including the dependent variable. The Control of corruption (CoC) is the dependent variables. Freedom of information and Existence of anti-corruption agencies are the main variables to examine the mentioned hypothesis. Its is worth mentioning that both of the variables are dummy. Furthermore, this paper controls
+for GDP per capita, GDP per capita, share of trade of the GDP, Education which is gross ratio of the total enrollment, tax payable by businesses in 28 European countries and the year identifier. 
+
+## Method
+This paper employs the fixed effects panel analysis. Since our response variable is continuous, we find this method best fit. We also made an interaction analysis of the dependent variable with two key independent variables. 
+
+# Descriptive statistics
+
+
+This paper shows some descriptive findings. Table 2 shows the summary of statistics for all the variables and this shows that the sample is well balanced with the number of variables and their observations. The fist column is consisting variables name, second column is the number of observation of each variables, third column indicates the mean of each variable, following with the standard deviation, minimum and maximum value in the sample at the fourth, fifth and sixth column.  Year is an integer variable which starts from 1996 until 2014 and the mean of the year in this sample is 2005. The mean of the tradeshare of GDP is 105 with the standard deviation of 53. GDP per capita seems to have skewed. Control of corruption has 1.03 mean, 0.85 standard deviation, -0.82 minimum value and 2.59 maximum value in the sample. The mean for the freedom of information is 0.27 and 0.45 standard deviation. Existence of anti corruption agency has 0.46 mean and 0.50 standard deviation. 
+
+```{r desstat, echo=F, warning=F, message=F, error=F, results='asis', fig.align="center"}
+
+stargazer(euro,
+          #covariate.labels = sum_stat,
+          title= 'Summary statistics of the covariates',
+          type="latex", header = FALSE)
+```
+
+
+
+Having discussed the summary statistics, we made a facet plot to show the control of corruption score (CoC) over year (from 2000 - 2010) in 28 European countries. Control of corruption in Austria has declining pattern, same with Greece, Italy, Cyprus, Hungry, Netherlands, Denmark, France, Malta, Slovenia, Spain and Sweden. Control of corruption has a rising pattern in United Kingdom, Poland, Romania, Slovakia, Germany, Estonia, Belgium and Croatia. This means in most of the European countries, control of corruption score has declining pattern. 
+
+``` {r fig, echo = F, message = F, results = "hide", error=F, fig.height=8, fig.align="center"}
+plot1 = ggplot(euro) # generate ggplot with data = EU28 starting in 2002
+plot1 = plot1 + geom_line(aes(x = year, y = cocscore, group = factor(country) # add layer to plot
+)) # layer = line plot over year for cocscore
+plot1 = plot1 + facet_wrap(~ country) # gives each country its own frame
+plot1 = plot1 + theme(legend.position = "none") # removes super bulky plot legend
+plot1 = plot1 + theme_bw() # turns graph into black and white scheme
+plot1 = plot1 + xlab("Year") + ylab("COC Score") # adds axis label
+plot1 # prints the plot
+```
+
+
+# Analysis
+
+After the descriptive analysis, we show here some inferential findings. Table 3, indicates the empirical findings for further analysis of the data. This paper seeks to investigate on the hypothesis by using fixed effects panel analysis. By using fixed effects, we wanted to analyse the impact ofvariables that vary over time.
+We wanted to see the control of corruption score with the freedom of information and existence of anti-corruption agencies with the separated models. In the first model,freedom of information has a negative effect and this effect is statistically significant with the -0.30 coefficient. GDP per capita has a positive significant effect effect, education which is the gross enrollment ratio of enrollment does don't have any effect on control of corruption. Competitiveness has a positive effect with the 0.0004 coefficient. Trade has a negative effect and this effect is not significant. Urban variable has a negative significant effect on the control of corruption. In the second model, we wanted to investigate on the existence of anti-corruption agencies with the other control variables. Existence of anti-corruption agency has a negative significant effect on control of corruption with the -0.24 coefficient. Education is still insignificant same as in the first model. GDP per capita has the same significant effect on control of corruption score. Competitiveness has still positive significant effect. Trade has insignificant effect in the second model as well. Urban variable has a negative significant effect on the control of corruption. Hence, the findings do not support he hypothesis on UNCAC's suggested policies, that conflict of interest regulation and financial disclosure mechanisms will only affect grand corruption in in the presence of other intervening variables such as an independent judiciary, a free media and an engaged body of citizens.
+
+``` {r regout, echo = F, message = F, results = "asis", error=F, fig.align='center'}
+euro$aca_pres=as.factor(euro$aca_pres)
+euro$foia=as.factor(euro$foia)
+
+
+model1 <- plm(cocscore ~ foia + gdppc + education + competitiveness + trade + urban,
+                      data = euro, index = c('country','year'), model='within')
+model2 <- plm(cocscore ~ aca_pres + gdppc + education + competitiveness + trade + urban,
+                          data = euro, index = c('country','year'), model='within')
+
+var_labels <- c('Freedom of information', 'Existence of anti corruption agency', 
+                'GDP per capita', 'Education', 
+                'Competitiveness',
+                'Trade',
+                'Urban')
+
+
+stargazer::stargazer(model1, model2,
+                     omit = 'as.factor*', 
+                     omit.stat = c('f', 'ser'), # to nicely fits on the page
+                     out.header = F,
+                     title = 'Determinats of corruption',
+                     dep.var.labels = 'Control of corruption score',
+                     covariate.labels = var_labels,
+                     label = 'AfD_voteshare',
+                     add.lines = list(c('FE', rep('YES', 2))),
+                     float = F, df = F, # add float and df to F
+                     type="latex", header = F, 
+                     no.space = T,
+                     font.size = 'small', # make the font tiny
+                     digits = 2) # add no.space=TRUE to remove space in betwen line. 
+```
+
+
+By the following figure, we tried to make an interaction of the freedom of information variable with the presence of anti corruption agency variable. Both variables are binary. The result shows that the effect of presence of freedom of information on mean control of corruption varies whether there is existence of anti corruption agency or not. The result is also significant since the confidence interval does not cross. It simply shows that, at least in the European context, freedom of information has lower effect on the mean control of corruption when it is interacted with the presence of anti corruption agency. 
+
+
+``` {r inter, echo = F, message = F, results = "hide", error=F, fig.height=6, fig.align="ce fig.width = 8, nter"}
+euro$foia=as.factor(euro$foia)
+euro$aca_pres=as.factor(euro$aca_pres)
+dat2 = describeBy(euro$cocscore,list(euro$foia,euro$aca_pres), mat=TRUE,digits=2)
+
+names(dat2)[names(dat2) == 'group1'] = 'InformationFreedom'
+names(dat2)[names(dat2) == 'group2'] = 'AntiCorruptionAgency'
+ 
+levels(dat2$InformationFreedom)[levels(dat2$InformationFreedom)=='0'] = 'Absence'
+levels(dat2$InformationFreedom)[levels(dat2$InformationFreedom)=='1'] = 'Presence'
+
+dat2$se = dat2$sd/sqrt(dat2$n)
+
+limits = aes(ymax = mean + (1.96*se), ymin=mean - (1.96*se))
+ 
+dodge = position_dodge(width=0.9)
+ 
+apatheme=theme_bw()+
+  theme(panel.grid.major=element_blank(),
+        panel.grid.minor=element_blank(),
+        panel.border=element_blank(),
+        axis.line=element_line(),
+        text=element_text(family='Times'))
+
+p=ggplot(dat2, aes(x = InformationFreedom, y = mean, fill = AntiCorruptionAgency))+
+  geom_bar(stat='identity', position=dodge)+
+  geom_errorbar(limits, position=dodge, width=0.25)+
+  apatheme+
+  ylab('Mean control of corruption')+
+  scale_fill_grey()
+p
+```
+
+
+
+
+# Conclusion 
+Given the complexity of the issue and assuming theUnited Nations Convention against Corruption (UNCAC) policies can by themselves eradicate corruption on their own is not realistic. Therefore, this paper has investigated on the assumption, that transparency mechanisms can only be effective when they interact with other factors that guaranteethe effective implementation. Those factors are having strong and independent judiciary system and corruption a free media and an engaged body of citizens to effect grand corruption along with the conflict of interest regulation and financial disclosure mechanisms.
+
+Empirical evidence from the 28 European countries on the United Nations Convention against Corruption (UNCAC) strategies as potential weapons to fight against grand corruption which are conflict of Interest regulation and Financial disclosure of assets of relevant governmentofficials on the light of freedom of information and existence of anti corruption agency shows, that both existence of anti corruption agency and freedom of information have a negative significant effect on the control of corruption from 1996 till 2014. Presence of other intervening factors such as an independent judiciary, a free media and freedom of information had a negative effect on CoC.
+
+Based on the findings, we can see that in the existence of both freedomof information and existence of judiciary system urban has a negative and significant effect, Competitiveness and GDP per capita have significant positive effect on control of corruption. Education does not have any effect on the control of grand corruption in 28 EU countries. 
+
+\pagebreak
+
+# References
+
