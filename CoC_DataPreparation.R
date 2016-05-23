@@ -3,10 +3,8 @@
 # by Mariam Sanjush and Roberto Martinez B. Kukutschka
 # Due date: 19.04.2016
 #####################################
-# 1. Set working directory for our two computers (so that the code runs on either of them)
-getwd()
 
-# 2. Load libraries
+# 1. Load libraries
 library(httr)
 library(plyr)
 library(xlsx)
@@ -25,6 +23,14 @@ library(ggplot2)
 library(zoo)
 library(rworldmap)
 library(googleVis)
+
+# 2. Set working directory
+
+# Create list of commonly used working directories (update, if needed)
+directory <- c('C:/Users/mariamsanjush/Desktop/MPP-4th Semester/MPP-E1180 Introduction to Collaborative Social Science Data Analysis/Assignments/Final_Research_Project')
+
+set_valid_wd(directory) # Set to first valid directory in the possible_dir vector
+rm(directory) # remove possible_dir vector
 
 #####################################
 # SECTION I: COLLLECTING DATA 

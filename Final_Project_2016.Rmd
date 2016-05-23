@@ -7,7 +7,8 @@ date: |
 output: 
   pdf_document:
     number_sections: true
-bibliography: reference.bib
+bibliography: 
+- reference.bib
 ---
 
 
@@ -22,24 +23,39 @@ knitr::opts_chunk$set(echo = FALSE)
 rm(list = ls())
 
 ## Load packages for analysis
-
-
-load <- c("httr", "plyr", "xlsx", "rio", "Zelig", "repmis", 
-          "plm", "tidyr", "countrycode", "Hmisc", 
-          "WDI", "xlsxjars", "zoo", "rworldmap", "googleVis",
-          "repmis", "magrittr", "scales", "betareg", "dplyr", "xtable", "texreg", 
-          "stargazer", "readxl", "ggplot2", "grid", 
-          "captioner", "foreign", "rms", "Zelig", 
-          "knitr", "GGally", "gridExtra", 
-          "zoo", "rugarch", "psych")
-
-loaded <- lapply(load, function(x) {
-  if(!require(x, character.only = T)) {
-    install.packages(x)
-    require(x, character.only = T)
-  }
-})
-
+library(httr)
+library(plyr)
+library(xlsx)
+library(rio)
+library(Zelig)
+library(repmis)
+library(plm)
+library(tidyr)
+library(countrycode)
+library(Hmisc)
+library(WDI)
+library(xlsxjars)
+library(dplyr)
+library(ggplot2)
+library(zoo)
+library(rworldmap)
+library(googleVis)
+library(stargazer)
+library(magrittr)
+library(scales)
+library(betareg)
+library(xtable)
+library(texreg)
+library(readxl)
+library(grid)
+library(captioner)
+library(foreign)
+library(rms)
+library(knitr)
+library(GGally)
+library(gridExtra)
+library(rugarch)
+library(psych)
 
 ## Create bibTeX file for the used packages
 LoadandCite(load, file = 'reference.bib')
@@ -55,7 +71,7 @@ tablecap <- captioner(prefix = "Table",
 
 
 # Create list of commonly used working directories (update, if needed)
-directory <- c('C:/Users/User/Desktop/cooperation')
+directory <- c('C:/Users/mariamsanjush/Desktop/MPP-4th Semester/MPP-E1180 Introduction to Collaborative Social Science Data Analysis/Assignments/Final_Research_Project')
 
 set_valid_wd(directory) # Set to first valid directory in the possible_dir vector
 rm(directory) # remove possible_dir vector
